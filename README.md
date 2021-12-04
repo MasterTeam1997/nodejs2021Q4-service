@@ -70,3 +70,51 @@ npm run lint
 Press <kbd>F5</kbd> to debug.
 
 For more information, visit: https://code.visualstudio.com/docs/editor/debugging
+
+
+
+#My README.md file
+
+
+
+# Install
+To install go to main folder and enter: 
+>npm i
+
+# How to run in development mode
+
+To start the program in development mode: 
+>npm run start
+
+The PORT is configured in the `.env` file
+
+
+# How to test
+To start the test first start the program in any mode. Then run: 
+>npm run test
+
+##### It is important to restart a server if it was already working and had some records.
+
+
+# Usage examples
+
+#### User (/users route)  
+GET /users - get all users (remove password from response)  
+GET /users/:userId - get the user by id (ex. “/users/123”) (remove password from response)  
+POST /users - create user  
+PUT /users/:userId - update user  
+DELETE /users/:userId - delete user  
+
+#### Board (/boards route)  
+GET /boards - get all boards  
+GET /boards/:boardId - get the board by id  
+POST /boards - create board  
+PUT /boards/:boardId - update board  
+DELETE /boards/:boardId - delete board  
+
+#### Task (boards/:boardId/tasks route)  
+GET boards/:boardId/tasks - get all tasks  
+GET boards/:boardId/tasks/:taskId - get the task by id  
+POST boards/:boardId/tasks - create task    
+PUT boards/:boardId/tasks/:taskId - update task  
+DELETE boards/:boardId/tasks/:taskId - delete task  
