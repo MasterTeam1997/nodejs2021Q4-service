@@ -5,6 +5,11 @@ import {User} from "../resources/user/user.model";
 
 
 // users
+/**
+ * A wrapper to add routes to an instance of Fastify
+ * @param app an instance of Fastyfy
+ * @returns void
+ */
 async function userRoutes(app: FastifyInstance) {
 
     app.get("/users", async () => {

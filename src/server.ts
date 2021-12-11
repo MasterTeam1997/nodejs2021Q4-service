@@ -10,8 +10,3 @@ app.register(boardRoute);
 app.register(taskRoute);
 
 app.listen(config.PORT);
-
-let a = 1;
-a = true
-a = "text"
-console.log(a)
