@@ -86,8 +86,11 @@ To install go to main folder and enter:
 To start the program in development mode: 
 >npm run start
 
+
 ### You might need to install nodemon and ts-node globally
 >npm i -g nodemon ts-node
+
+
 
 The PORT is configured in the `.env` file
 
