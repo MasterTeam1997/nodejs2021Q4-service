@@ -4,8 +4,9 @@ import fp from "fastify-plugin";
 import * as memory from "../resources/memory.repository"
 
 /**
- *
- * @param app
+ * A wrapper to add routes to an instance of Fastify
+ * @param app an instance of Fastyfy
+ * @returns void
  */
 async function taskRoutes(app: FastifyInstance) {
     app.get<{

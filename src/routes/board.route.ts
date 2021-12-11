@@ -4,6 +4,11 @@ import * as memory from '../resources/memory.repository'
 import {Column} from "../resources/board/column.model";
 
 // boards
+/**
+ * A wrapper to add routes to an instance of Fastify
+ * @param app an instance of Fastyfy
+ * @returns void
+ */
 async function boardRoutes(app: FastifyInstance) {
     app.get('/boards', async () => memory.getAllBoards());
     app.get<{ Params: { id: string } }>('/boards/:id', async (req, res) => {
