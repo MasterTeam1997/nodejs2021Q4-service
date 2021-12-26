@@ -10,9 +10,14 @@ import {Column} from "../resources/board/column.model";
  * @returns void
  */
 async function boardRoutes(app: FastifyInstance) {
-    app.get('/boards', async () => memory.getAllBoards());
+    app.get('/boards', async (req) => {
+        req.log.info(req.id, req.params)
+        memory.getAllBoards()
+    });
     app.get<{ Params: { id: string } }>('/boards/:id', async (req, res) => {
         const board = memory.getBoardById(req.params.id);
+        req.log.info(req.id, req.params)
+
         if (!board) {
             res.statusCode = 404;
             return false;
@@ -22,11 +27,15 @@ async function boardRoutes(app: FastifyInstance) {
     app.post<{ Body: { title: string, columns: Column[] } }>('/boards', async (req, res) => {
         const {title, columns} = req.body;
         const board = memory.createNewBoard(title, columns);
+        req.log.info(req.id, req.params)
+
         if (board !== undefined) res.statusCode = 201;
         return board;
     });
     app.delete<{ Params: { id: string } }>('/boards/:id', async (req, res) => {
         const result = memory.deleteBoardById(req.params.id);
+        req.log.info(req.id, req.params)
+
         if (!result) {
             res.statusCode = 404;
             return false;
@@ -37,6 +46,8 @@ async function boardRoutes(app: FastifyInstance) {
         const {id} = req.params;
         const {title, columns} = req.body;
         const board = memory.updateBoardById(id, title, columns);
+        req.log.info(req.id, req.params)
+
         if (!board) {
             res.statusCode = 404;
             return false;

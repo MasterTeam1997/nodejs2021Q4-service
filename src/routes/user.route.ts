@@ -12,9 +12,10 @@ import {User} from "../resources/user/user.model";
  */
 async function userRoutes(app: FastifyInstance) {
 
-    app.get("/users", async () => {
+    app.get("/users", async (req) => {
         const users = memory.getAllUsers();
         const resultingUsersNoPassword = []
+        req.log.info(req.id, req.params)
         for (let i = 0; i < users.length; i += 1) {
             const user: User = users[i];
             const tempUser = {...user}
@@ -33,6 +34,8 @@ async function userRoutes(app: FastifyInstance) {
             res.statusCode = 404
             return false
         }
+        req.log.info(req.id, req.params)
+
         const resultingUserNoPassword = {...user}
         resultingUserNoPassword.password = undefined
         return resultingUserNoPassword
@@ -54,12 +57,16 @@ async function userRoutes(app: FastifyInstance) {
         if (user !== undefined) {
             res.statusCode = 201
         }
+        req.log.info(req.id, req.params)
+
         const resultingUserNoPassword = {...user}
         resultingUserNoPassword.password = undefined
         return resultingUserNoPassword
     });
     app.delete<{ Params: { id: string } }>("/users/:id", async (req, res) => {
         const result = memory.deleteUserById(req.params.id);
+        req.log.info(req.id, req.params)
+
         if (!result) res.statusCode = 204
         return true
     });
@@ -82,6 +89,8 @@ async function userRoutes(app: FastifyInstance) {
         if (!user) {
             res.statusCode = 200
         }
+        req.log.info(req.id, req.params)
+
         const resultingUserNoPassword = {...user}
         resultingUserNoPassword.password = undefined
         return resultingUserNoPassword

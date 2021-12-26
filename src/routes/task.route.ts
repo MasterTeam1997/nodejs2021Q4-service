@@ -15,6 +15,8 @@ async function taskRoutes(app: FastifyInstance) {
         }
     }>('/boards/:boardId/tasks', async (req) => {
         const {boardId} = req.params;
+        req.log.info(req.id, req.params)
+
         return memory.getAllTasks(boardId);
     });
     app.get<{
@@ -25,6 +27,7 @@ async function taskRoutes(app: FastifyInstance) {
         }
     }>('/boards/:boardId/tasks/:id', async (req, res) => {
         const task = memory.getTaskById(req.params.id, req.params.boardId);
+        req.log.info(req.id, req.params)
         if (!task) {
             res.statusCode = 404;
             return false;
@@ -60,6 +63,7 @@ async function taskRoutes(app: FastifyInstance) {
             boardId,
             columnId
         );
+        req.log.info(req.id, req.params)
         if (task !== undefined) res.statusCode = 201;
         return task;
     });
@@ -71,6 +75,7 @@ async function taskRoutes(app: FastifyInstance) {
         }
     }>('/boards/:boardId/tasks/:id', async (req, res) => {
         const result = memory.deleteTaskById(req.params.id, req.params.boardId);
+        req.log.info(req.id, req.params)
         if (!result) {
             res.statusCode = 404;
             return false;
@@ -106,6 +111,7 @@ async function taskRoutes(app: FastifyInstance) {
             boardId,
             columnId
         );
+        req.log.info(req.id, req.params)
         if (!task) {
             res.statusCode = 404;
             return false;
