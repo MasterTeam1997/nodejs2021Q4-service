@@ -13,3 +13,4 @@ app.register(taskRoute);
 app.listen(config.PORT);
 activateLogger();
 // throw Error('Oops!')
+// Promise.reject(Error('Oops!'));
