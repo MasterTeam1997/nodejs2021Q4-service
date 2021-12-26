@@ -11,8 +11,9 @@ import {Column} from "../resources/board/column.model";
  */
 async function boardRoutes(app: FastifyInstance) {
     app.get('/boards', async (req) => {
+        const boards = memory.getAllBoards()
         req.log.info(req.id, req.params)
-        memory.getAllBoards()
+        return boards
     });
     app.get<{ Params: { id: string } }>('/boards/:id', async (req, res) => {
         const board = memory.getBoardById(req.params.id);
