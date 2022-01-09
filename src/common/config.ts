@@ -1,6 +1,8 @@
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 
+console.log('config dir: ', path.join(__dirname, '../../.env'))
+
 dotenv.config({
     path: path.join(__dirname, '../../.env'),
 });
@@ -20,7 +22,7 @@ if(process.env.LOG_LEVEL === "0"){
 
 
 export default {
-    PORT: process.env.PORT || 4000,
+    PORT: process.env.PORT,
     LOG_LEVEL: logLevel,
     NODE_ENV: process.env.NODE_ENV,
     MONGO_CONNECTION_STRING: process.env.MONGO_CONNECTION_STRING,
