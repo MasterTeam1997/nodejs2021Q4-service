@@ -86,6 +86,11 @@ To install go to main folder and enter:
 To start the program in development mode: 
 >npm run start
 
+# How to start a docker
+
+To start docker
+>docker compose up
+
 ### You might need to install nodemon and ts-node globally
 >npm i -g nodemon ts-node
 
